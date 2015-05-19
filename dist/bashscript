@@ -1,0 +1,19 @@
+#!/bin/bash
+#function run
+run() {
+    number=$1
+    shift
+    for i in `seq $number`; do
+      $@
+    done
+}
+FILE=testfile.bmp
+run 20 java -jar CryptoFile.jar h MD5 $FILE
+run 20 java -jar CryptoFile.jar h SHA-256 $FILE
+run 20 java -jar CryptoFile.jar e AES $FILE
+run 20 java -jar CryptoFile.jar d AES $FILE
+run 20 java -jar CryptoFile.jar e Blowfish $FILE
+run 20 java -jar CryptoFile.jar d Blowfish $FILE
+run 20 java -jar CryptoFile.jar k RSA $FILE
+run 20 java -jar CryptoFile.jar es RSA $FILE
+run 20 java -jar CryptoFile.jar ds RSA $FILE
